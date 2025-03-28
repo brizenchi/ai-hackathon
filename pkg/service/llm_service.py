@@ -1,11 +1,11 @@
 import logging
 import json
-from pkg.core.llm.llm_aggrator import LLMAggrator
+from pkg.core.llm.llm_store import LLMStore
 logger = logging.getLogger(__name__)
 
-class ChatService:
+class LlmService:
     def __init__(self):
-        self.llm_aggrator = LLMAggrator()
+        self.llm_store = LLMStore()
         
     async def chat(self,messages: str):
         try:
@@ -15,7 +15,7 @@ class ChatService:
             ]
 
             # 获取响应并验证JSON格式
-            response = await self.llm_aggrator.generate_response(prompt)
+            response = await self.llm_store.generate_chat_response(prompt)
             
             # 验证JSON格式
             try:
@@ -36,3 +36,26 @@ class ChatService:
                 await self.email_client.close()
             except Exception as e:
                 logger.error(f"Error closing email client: {e}")
+
+    async def image_recognition(self, image_url: str):
+        messages = [{
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "What's in this image?"
+                },
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": image_url
+                    }
+                }
+            ]
+        }]  # 确保这是一个列表，而不是元组
+        
+        response = await self.llm_store.generate_image_response(
+            model="gpt-4o-mini",
+            messages=messages
+        )
+        return response

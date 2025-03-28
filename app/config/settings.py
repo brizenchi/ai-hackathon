@@ -27,11 +27,7 @@ class Settings:
   
     # OpenAI 配置
     LLM_MODEL = {
-        "deepseek-chat": {
-            "api_key": os.getenv('DEEPSEEK_API_KEY'),
-            "base_url": os.getenv('DEEPSEEK_API_BASE_URL')
-        },
-        "gpt-4": {
+        "gpt-4o-mini": {
             "api_key": os.getenv('OPENAI_API_KEY'),
             "base_url": os.getenv('OPENAI_API_BASE_URL')
         }

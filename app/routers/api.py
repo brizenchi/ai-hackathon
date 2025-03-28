@@ -7,7 +7,7 @@ from app.routers.middleware import register_middleware
 api_router = APIRouter()
 
 # 注册所有子路由
-api_router.include_router(chat.router, prefix="/chat")
+api_router.include_router(chat.router, prefix="/llm")
 def init_app(app):
     """Initialize the application with routes and middleware"""
     # 注册主路由

@@ -11,7 +11,7 @@ class LLMStore:
         self.client = AsyncOpenAI(api_key=api_key, base_url=base_url)
         self.model = model
     
-    async def generate_response(self, messages: List[Dict[str, str]]) -> str:
+    async def generate_chat_response(self, messages: List[Dict[str, str]]) -> str:
         """异步生成 OpenAI 的响应"""
         try:
             print(f"messages: {messages}")
@@ -25,16 +25,17 @@ class LLMStore:
         except Exception as e:
             logger.error(f"Error generating response: {e}")
             raise RuntimeError(f"Error generating response: {str(e)}")
-
-# 示例用法
-async def main():
-    llm_store = LLMStore()  # 实例化 OpenAIAPI
-    messages = [
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "who are you."}
-    ]
-    response = await llm_store.generate_response(messages)
-    print(response)
-
-if __name__ == '__main__':
-    asyncio.run(main())
+        
+    async def generate_image_response(self,model: str, messages: List[Dict[str, str]]) -> str:
+        """异步生成 OpenAI 的响应"""
+        try:
+            print(f"messages: {messages}")
+            completion = await self.client.chat.completions.create(
+                model=model,
+                messages=messages,
+            )
+            # 直接返回文本内容
+            return completion.choices[0].message.content
+        except Exception as e:
+            logger.error(f"Error generating response: {e}")
+            raise RuntimeError(f"Error generating response: {str(e)}")
