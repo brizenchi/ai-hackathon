@@ -22,7 +22,7 @@ async def log_request_middleware(request: Request, call_next):
         "trace_id": trace_id,
         "path": request.url.path,
         "method": request.method,
-        "query_params": str(request.query_params),
+        # "query_params": str(request.query_params),
         "client_host": request.client.host if request.client else None,
     }
     
@@ -36,7 +36,7 @@ async def log_request_middleware(request: Request, call_next):
             request_info["body"] = f"Error reading body: {str(e)}"
     
     # 记录请求信息
-    logger.info(f"[{trace_id}] Request: {json.dumps(request_info)}")
+    # logger.info(f"[{trace_id}] Request: {json.dumps(request_info)}")
     
     # 调用下一个中间件或路由处理器
     response = await call_next(request)
