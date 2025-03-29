@@ -30,6 +30,10 @@ class Settings:
         "gpt-4o-mini": {
             "api_key": os.getenv('OPENAI_API_KEY'),
             "base_url": os.getenv('OPENAI_API_BASE_URL')
+        },
+        "qwen-vl-max": {
+            "api_key": os.getenv('QINIU_ACCESS_KEY'),
+            "base_url": os.getenv('QINIU_SECRET_KEY')
         }
     }
     

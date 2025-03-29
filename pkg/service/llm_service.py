@@ -109,7 +109,7 @@ class LlmService:
         },
         ],
         response = await self.llm_store.generate_language_response(
-            model="qwen-omni-turbo",
+            model="qwen-vl-max",
             messages=messages
         )
         return response
