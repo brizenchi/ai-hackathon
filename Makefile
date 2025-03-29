@@ -82,7 +82,6 @@ run:
 	@docker run -d \
 		--name $(APP_NAME) \
 		-v $(PWD)/deployment/logs:/app/deployment/logs \
-		-v $(PWD)/deployment/.env:/app/deployment/.env \
 		-p 8080:8000 \
 		$(APP_NAME):$(DOCKER_TAG)
 
