@@ -1,5 +1,5 @@
 # 变量定义
-APP_NAME := deeper-newsletter
+APP_NAME := be-my-eyes-backend
 BUILD_TIME := $(shell date "+%F %T")
 COMMIT_SHA1 := $(shell git rev-parse HEAD)
 

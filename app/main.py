@@ -26,7 +26,10 @@ init_app(app)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # 允许的前端域名
+    allow_origins=[
+        "http://localhost:3000",
+        "https://be-my-eyes.vercel.app"
+    ],  # 允许的前端域名
     allow_credentials=True,
     allow_methods=["*"],  # 允许所有方法
     allow_headers=["*"],  # 允许所有头部
