@@ -29,7 +29,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "http://192.168.0.188:3000",
-        "https://be-my-eyes.vercel.app"
+        "https://be-my-eyes.vercel.app",
+        "https://be-my-eyes-y3nw.vercel.app/"
     ],  # 允许的前端域名
     allow_credentials=True,
     allow_methods=["*"],  # 允许所有方法
