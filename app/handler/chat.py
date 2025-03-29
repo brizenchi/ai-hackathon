@@ -66,7 +66,10 @@ async def upload(data: MediaData):
         qiniu_store = qiniu_factory.get_qiniu_store()
         image_url = qiniu_store.upload_file(image_path)
         # audio_url = qiniu_store.upload_file(audio_path)
-        response = await LlmService().image_recognition(transcript, image_url[1])
+        if transcript == "":
+            response = await LlmService().image_recognition(question="请回答视频中内容", image_url=image_url[1])
+        else:
+            response = await LlmService().image_recognition(question=transcript, image_url=image_url[1])
         # response = await LlmService().language_recognition("请回答视频中内容", audio_url[1])
         return success_result(data={
             "response": response,
