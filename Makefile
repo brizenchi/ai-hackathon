@@ -102,8 +102,8 @@ deploy:
 		cd /home/brizenchi/be-my-eyes-backend && \
 		git pull && \
 		git checkout main && \
-		sudo make remove && \
 		sudo make docker-build && \
+		sudo make remove && \
 		sudo make run'
 # 帮助信息
 help:
