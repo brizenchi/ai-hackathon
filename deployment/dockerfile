@@ -9,7 +9,8 @@ COPY . .
 
 RUN pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 RUN pip install --upgrade pip setuptools \
-    && pip install --no-cache-dir -r requirements.txt
+    && pip install --no-cache-dir -r requirements.txt \
+    && apt-get install -y ffmpeg
 
 # 设置环境变量
 ENV PYTHONPATH=/app

@@ -100,7 +100,7 @@ logs:
 deploy:
 	@echo "Deploying to production server..."
 	ssh brizenchi@34.56.103.77 '\
-		cd /home/brizenchi/deeper-newsletter && \
+		cd /home/brizenchi/be-my-eyes-backend && \
 		git pull && \
 		git checkout main && \
 		sudo make remove && \
