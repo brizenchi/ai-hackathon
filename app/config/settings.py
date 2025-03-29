@@ -33,6 +33,11 @@ class Settings:
         }
     }
     
+    # 七牛云配置
+    QINIU_ACCESS_KEY = os.getenv('QINIU_ACCESS_KEY')
+    QINIU_SECRET_KEY = os.getenv('QINIU_SECRET_KEY')
+    QINIU_BUCKET_NAME = os.getenv('QINIU_BUCKET_NAME')
+    QINIU_DOMAIN = os.getenv('QINIU_DOMAIN')
     
     @property
     def CHROMA_AUTH_TOKEN(self) -> str:

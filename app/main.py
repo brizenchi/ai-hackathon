@@ -9,6 +9,7 @@ import asyncio
 from hypercorn.config import Config
 from hypercorn.asyncio import serve
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.routers.api import init_app
 from app.config.settings import settings
 from app.config.logging_config import setup_logging
@@ -22,6 +23,14 @@ setup_logging()
 
 app = FastAPI()
 init_app(app)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # 允许的前端域名
+    allow_credentials=True,
+    allow_methods=["*"],  # 允许所有方法
+    allow_headers=["*"],  # 允许所有头部
+)
 
 async def main():
     """Main async function to run both timer and server"""
