@@ -65,7 +65,9 @@ async def upload(data: MediaData):
         qiniu_factory = QiniuFactory()
         qiniu_store = qiniu_factory.get_qiniu_store()
         image_url = qiniu_store.upload_file(image_path)
-        response = await LlmService().image_recognition(transcript, image_url[1])
+        audio_url = qiniu_store.upload_file(audio_path)
+        # response = await LlmService().image_recognition(transcript, image_url[1], audio_url[1])
+        response = await LlmService().language_recognition(transcript, audio_url[1])
         return success_result(data={"response": response})
         
     except Exception as e:

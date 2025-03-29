@@ -39,3 +39,10 @@ class LLMStore:
         except Exception as e:
             logger.error(f"Error generating response: {e}")
             raise RuntimeError(f"Error generating response: {str(e)}")
+        
+    async def generate_language_response(self,model: str, messages: List[Dict[str, str]]) -> str:
+        completion = self.client.chat.completions.create(
+            model=model,
+            messages=messages,
+        )
+        return completion.choices[0].message.content

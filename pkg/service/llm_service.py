@@ -60,6 +60,31 @@ class LlmService:
         )
         return response
     
+    async def language_recognition(self, question: str, audio_url: str):
+        messages=[
+            {
+                "role": "system",
+                "content": [{"type": "text", "text": "你是一位给视障人士提供视觉信息的视觉助理。回答视障人士的问题时，尽可能考虑问题的意图和视障人士可能遇到的困难来回答。如果你认为问题不够清晰，图片不够清晰，或图片中没有足够的信息来回答问题，请向视障人士礼貌提问以获取更多信息。"}],
+            },
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "video_url",
+                        "video_url": {
+                            "url": audio_url
+                        },
+                    },
+                    {"type": "text", "text": question},
+                ],
+            },
+        ],
+        response = await self.llm_store.generate_language_response(
+            model="qwen-omni-turbo",
+            messages=messages
+        )
+        return response
+    
     async def image_recognition_base64(self, question: str, image_base64: str):
         messages = [{
             "role": "user",
